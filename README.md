@@ -1,146 +1,196 @@
-# Kopius - The Academy Cohort 05 - Clase 1 de NodeJS
+<div align="center">
 
-<p align="center">
-  <a href="https://nodejs.org/en" target="blank"><img src="https://user-images.githubusercontent.com/3438503/260495760-ca5d8c24-b382-43d9-8fbe-d905b4b208f0.png" width="300" alt="NodeJS Logo" /></a>
-</p>
+<a href="https://nodejs.org/en" target="_blank"><img src="https://user-images.githubusercontent.com/3438503/260495760-ca5d8c24-b382-43d9-8fbe-d905b4b208f0.png" width="260" alt="Logo de Node.js" /></a>
 
-## Contenido
+# Clase 1 de NodeJS
 
-### Preguntas comunues sobre Node
+### Kopius · The Academy · Cohort 05
 
-1. ¿Qué es Node?
+**Fundamentos, entorno de desarrollo y el Event Loop**
 
-Node es básicamente un ambiente de ejecicuón para ejecutar JavaScript desligado del navegador web o mejor conocido como Runtime environment.
+![Node.js](https://img.shields.io/badge/Node.js-24.x-5FA04E?style=for-the-badge&logo=nodedotjs&logoColor=white)
+![JavaScript](https://img.shields.io/badge/JavaScript-F7DF1E?style=for-the-badge&logo=javascript&logoColor=black)
+![npm](https://img.shields.io/badge/npm-CB3837?style=for-the-badge&logo=npm&logoColor=white)
+![Docker](https://img.shields.io/badge/Docker-2496ED?style=for-the-badge&logo=docker&logoColor=white)
 
-2. ¿Qué lo hace tan especial?
+</div>
 
-Código abierto con el motor V8 de Google Chrome y está diseñado para realizar tareas de E/S(I/O) junto con el manejo de archivo de computadora cliente/servido.
+---
 
-**Caracteristicas**
+## Índice
 
-- Asincronía
-- Módulos nativos y de terceros
-- Gestión de paquetes con NPM
-- Escalabilidad
-- Múltiple plataforma
+1. [Preguntas comunes sobre Node](#1-preguntas-comunes-sobre-node)
+   - [¿Qué es Node?](#qué-es-node)
+   - [¿Qué lo hace tan especial?](#qué-lo-hace-tan-especial)
+   - [¿Qué es Non-Blocking I/O?](#qué-es-non-blocking-io)
+   - [NPM vs. NPX](#npm-vs-npx)
+2. [Instalaciones y entorno de desarrollo](#2-instalaciones-y-entorno-de-desarrollo)
+   - [Instalaciones requeridas](#instalaciones-requeridas)
+   - [Instalaciones opcionales: NVM](#instalaciones-opcionales-nvm)
+3. [Primeros pasos con Node](#3-primeros-pasos-con-node)
+4. [Leer y escribir archivos (FileSystem)](#4-leer-y-escribir-archivos-filesystem)
+5. [Orden de ejecución y Event Loop](#5-orden-de-ejecución-y-event-loop)
+   - [El runtime de Node](#el-runtime-de-node)
+   - [Libuv](#libuv)
+   - [¿Qué es el Event Loop?](#qué-es-el-event-loop)
+   - [Las seis colas](#las-seis-colas)
+   - [¿Cómo funciona el Event Loop?](#cómo-funciona-el-event-loop)
+   - [Preguntas frecuentes](#preguntas-frecuentes)
+6. [Referencias](#referencias)
+7. [Autor](#autor)
 
-3. ¿Qué es No-Blocking I/O?
+---
 
-Es una caracteristica de Node que permite ejecutar instrucciones en paralelo que no bloquean todo el hilo, donde casi el 99% de las funciones de node se ejecutar en modo no bloqueando y esto lo logra a la libreria libuv.
+## 1. Preguntas comunes sobre Node
 
-**Blocking**
-Básicamente cuando la ejecución del código debe de esperar a que se complete el proceso pero esta a su vez impide que se sigan ejecutando otras instrucciones en paralelo.
+### ¿Qué es Node?
 
-4. NPM vs. NPX
+> [!NOTE]
+> Node es un **entorno de ejecución** (_runtime environment_) para ejecutar JavaScript **fuera del navegador web**.
 
-**NPM (Node package manager)** es el gestor de paquetes para node con mayor crecimiento en paquetes desplegados y ya viene instalado con Node.
+### ¿Qué lo hace tan especial?
 
-<p></p>
+Es de **código abierto**, está construido sobre el **motor V8 de Google Chrome** y está diseñado para realizar tareas de **entrada/salida (E/S o I/O)**, junto con el manejo de archivos en entornos cliente/servidor.
 
-**NPX (Node package execute)** es una herramienta del ecosistema de Node.js que permite ejecutar comandos de paquetes de npm sin necesidad de instalarlos globalmente.
+| Característica | Descripción |
+| --- | --- |
+| ⚡ **Asincronía** | Ejecuta operaciones sin bloquear el hilo principal |
+| 🧩 **Módulos** | Módulos nativos y de terceros |
+| 📦 **NPM** | Gestión de paquetes integrada |
+| 📈 **Escalabilidad** | Pensado para aplicaciones que crecen |
+| 🌎 **Multiplataforma** | Funciona en Mac, Windows y Linux |
 
-Referencias
+### ¿Qué es Non-Blocking I/O?
 
-- https://nodejs.org/learn/asynchronous-work/overview-of-blocking-vs-non-blocking
+> [!TIP]
+> **Non-Blocking:** es una característica de Node que permite ejecutar instrucciones en paralelo **sin bloquear todo el hilo**. Casi el 99% de las funciones de Node se ejecutan en modo no bloqueante, y esto lo logra gracias a la librería **libuv**.
 
-### Instalaciones y entorno de desarrollo
+> [!WARNING]
+> **Blocking:** la ejecución del código debe esperar a que se complete el proceso y, mientras tanto, **impide que se sigan ejecutando otras instrucciones** en paralelo.
 
-**Instalaciones requeridas**
+### NPM vs. NPX
 
-- [Visual Studio Code](https://code.visualstudio.com/)
-- [Postman](https://www.postman.com/downloads/)
-- [Table Plus](https://tableplus.com/)
-- [Git](https://git-scm.com/)
+| | NPM | NPX |
+| --- | --- | --- |
+| **Nombre** | Node Package Manager | Node Package Execute |
+| **¿Qué hace?** | Gestiona los paquetes de Node. Es el registro con mayor crecimiento en paquetes publicados | Ejecuta comandos de paquetes de npm **sin instalarlos globalmente** |
+| **Instalación** | Viene incluido con Node | Viene incluido con npm |
 
-```
+📚 Referencia: [Overview of Blocking vs Non-Blocking](https://nodejs.org/learn/asynchronous-work/overview-of-blocking-vs-non-blocking)
+
+<sub>[⬆ Volver al índice](#índice)</sub>
+
+---
+
+## 2. Instalaciones y entorno de desarrollo
+
+### Instalaciones requeridas
+
+| Herramienta | Para qué la usamos |
+| --- | --- |
+| [Visual Studio Code](https://code.visualstudio.com/) | Editor de código |
+| [Postman](https://www.postman.com/downloads/) | Probar APIs |
+| [Table Plus](https://tableplus.com/) | Cliente de base de datos |
+| [Git](https://git-scm.com/) | Control de versiones |
+| [Node](https://nodejs.org/es/) | Runtime de JavaScript |
+| [Google Chrome](https://www.google.com/chrome/) | Navegador |
+| [Docker Desktop](https://www.docker.com/get-started) | Contenedores |
+
+**Configurar Git**
+
+```bash
 git config --global user.name "Tu nombre"
 git config --global user.email "Tu correo"
 ```
 
-- [Node](https://nodejs.org/es/)
-- [Google Chrome](https://www.google.com.mx/intl/es-419/chrome/?brand=CHBD&gclid=Cj0KCQiAtrnuBRDXARIsABiN-7AAMm13Ae3KDIib46Laxfe6tzD_w4yvDdpq5XsPw1eNlOkZ_0-3x3IaAvLEEALw_wcB&gclsrc=aw.ds)
-- [Docker Desktop](https://www.docker.com/get-started)
+**Descargar imágenes de Docker**
 
-Descargar imágenes de Docker - Opcional, pero llegaremos a necesitarlas después
+> [!NOTE]
+> Es opcional, pero la vamos a necesitar más adelante.
 
-```
+```bash
 docker pull postgres:16.15
 ```
 
-**Instalaciones opcionales**
+### Instalaciones opcionales: NVM
 
-**Node Version Manager**
+**Node Version Manager** permite instalar y cambiar entre distintas versiones de Node.
 
-- Mac
+<details>
+<summary><b>🍎 Mac</b></summary>
 
-```
+```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
 ```
 
-- Windows
+</details>
+
+<details>
+<summary><b>🪟 Windows</b></summary>
+
+Descarga el instalador directamente:
 
 ```
 https://github.com/coreybutler/nvm-windows/releases/download/1.2.2/nvm-setup.exe
 ```
 
-O
+O desde PowerShell:
 
-```bash
+```powershell
 Invoke-WebRequest `
   -Uri "https://github.com/coreybutler/nvm-windows/releases/download/1.2.2/nvm-setup.exe" `
   -OutFile "$env:USERPROFILE\Downloads\nvm-setup.exe"
 ```
 
-- Comandos utiles
+</details>
 
-```bash
-# Verificar NVM
-nvm version
+**Comandos útiles**
 
-# Instalar la última versión LTS de Node.js
-nvm install lts
+| Comando | Para qué sirve |
+| --- | --- |
+| `nvm version` | Verificar NVM |
+| `nvm install lts` | Instalar la última versión LTS de Node.js |
+| `nvm list` | Ver las versiones instaladas |
+| `nvm use 24.11.1` | Activar una versión específica |
+| `node --version` | Verificar Node.js |
+| `npm --version` | Verificar npm |
 
-# Ver las versiones instaladas
-nvm list
+📚 Referencias: [nvm-sh/nvm](https://github.com/nvm-sh/nvm) · [coreybutler/nvm-windows](https://github.com/coreybutler/nvm-windows)
 
-# Activar una versión específica
-nvm use 24.11.1
+<sub>[⬆ Volver al índice](#índice)</sub>
 
-# Verificar Node.js
-node --version
+---
 
-# Verificar npm
-npm --version
-```
+## 3. Primeros pasos con Node
 
-Referencias
+> [!IMPORTANT]
+> **Tarea: tu primer programa**
+>
+> 1. En el directorio de trabajo, crea la carpeta `01-fundamentos`.
+> 2. Dentro, crea tu primer archivo `app.js`.
+> 3. Usando JavaScript, crea dos variables:
+>    - `message`, inicializada con el string `'Welcome'`.
+>    - `period`, inicializada con `new Date().getHours() < 12 ? "AM" : "PM";`
+> 4. Escribe un saludo usando `message`: si es de mañana, asigna `Good Morning`; si es de tarde, `Good Afternoon`.
+> 5. Al final, imprime en la consola el valor de `message`.
 
-- https://github.com/nvm-sh/nvm
-- https://github.com/nvm-windows/nvm
-
-### Primeros pasos con Node (Tarea)
-
-1. Creamos en el directorio de trabajo creamos la carpeta `01-fundamentos`
-2. Dentro creamos nuestro primer archivo app.js
-3. Usando código JavaScript creamos dos variables
-   i. una llamada `message` la inicializamos con el valor de tipo string 'Welcome'
-   ii. la segunda `period` y la inicializamos con este código `new Date().getHours() < 12 ? "AM" : "PM";`
-4. Necesitamos que escribi un saludo usando nuestra variable message donde si esta es de mañana asiganmos `Good Morninig` y si es de tarde `Good Afternoon`.
-5. Al final imprimimos en la consola el resultado del valor de messge.
-
-Ejecutar el programa desde la terminal por linea de comandos.
+Ejecuta el programa desde la terminal:
 
 ```bash
 node app
 ```
 
-### Leer y escribir archivos con Node (FileSystem)
+<sub>[⬆ Volver al índice](#índice)</sub>
 
-El archivo con que vamos a trabajar hay que descargarlo desde:
-https://github.com/aduartekopiustech/node-fullstack-clase-01/blob/main/README.md
+---
+
+## 4. Leer y escribir archivos (FileSystem)
+
+El archivo con el que vamos a trabajar se descarga desde
+[este README](https://github.com/aduartekopiustech/node-fullstack-clase-01/blob/main/README.md).
 
 ```javascript
-const fs = requiere("fs");
+const fs = require("fs");
 
 const data = fs.readFileSync("README.md", "utf8");
 
@@ -149,22 +199,27 @@ console.log(data);
 fs.writeFileSync("README-COPY.md", data.replace(/Node/gi, "NodeJS"));
 ```
 
-Tarea
+> [!IMPORTANT]
+> **Tarea: analizar README-COPY.md**
+>
+> 1. Crea un programa que lea el archivo `README-COPY.md`.
+> 2. Cuenta cuántas palabras tiene el archivo.
+> 3. Cuenta las ocurrencias de la palabra `NodeJS`, distinguiendo mayúsculas y minúsculas (_case sensitive_).
 
-1. Creamos un programa para leer el archivo README-COPY.md
-2. Quiero saber cuantas palabras tiene el archivo.
-3. Contar las ocurrencias de la palabra NodeJS, implementar case sentitive.
+<sub>[⬆ Volver al índice](#índice)</sub>
 
-### Orden de ejecución, Event Loop y Node execution
+---
+
+## 5. Orden de ejecución y Event Loop
 
 <p align="center">
-  <a href="https://nodejs.org/en" target="blank"><img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F22911d4752a44b48a42c7fabae9a64ee?format=webp&width=2000" width="1000" alt="NodeJS Logo" /></a>
+  <img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F22911d4752a44b48a42c7fabae9a64ee?format=webp&width=2000" width="1000" alt="Diagrama de ejecución en Node.js" />
 </p>
 
-**Quien se ejecuta primero?**
-No lo sabemos, es el `Event Loop` quien lo decide.
+> [!NOTE]
+> **¿Quién se ejecuta primero?** No lo sabemos: es el **Event Loop** quien lo decide.
 
-JavaScript es un lenguaje synchronous, blocking y single-threaded lo cual es un problema como por ejemplo un código asi;
+JavaScript es un lenguaje **synchronous**, **blocking** y **single-threaded**, lo cual es un problema con código como este:
 
 ```javascript
 while (true) {
@@ -173,26 +228,32 @@ while (true) {
 moreWork(); // nunca se ejecutará
 ```
 
-Este es el problema que Node viene a resolver, por lo que le runtime de Node tiene estos 3 componentes.
+Este es el problema que Node viene a resolver.
+
+### El runtime de Node
 
 <p align="center">
-  <a href="https://nodejs.org/en" target="blank"><img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F0adb9612e27a439e8bbe2a65b861bbb3?format=webp&width=2000" width="1000" alt="NodeJS Logo" /></a>
+  <img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F0adb9612e27a439e8bbe2a65b861bbb3?format=webp&width=2000" width="1000" alt="Componentes del runtime de Node.js" />
 </p>
 
 En esencia, el entorno de ejecución de Node está compuesto por tres componentes principales:
 
-- Dependencias externas: como V8, libuv y crypto, que Node.js necesita para su funcionamiento.
-- Funcionalidades de C++: que proporcionan capacidades como el acceso al sistema de archivos y la comunicación a través de redes.
-- Una biblioteca de JavaScript: que proporciona funciones y utilidades para acceder a las funcionalidades implementadas en C++ directamente desde el código JavaScript.
-  Aunque todos estos componentes son importantes, el componente fundamental para la programación asíncrona en Node.js es una dependencia externa llamada libuv.
+| Componente | Qué aporta |
+| --- | --- |
+| 🔗 **Dependencias externas** | V8, libuv y crypto, que Node.js necesita para funcionar |
+| ⚙️ **Funcionalidades de C++** | Acceso al sistema de archivos y comunicación a través de redes |
+| 📜 **Biblioteca de JavaScript** | Funciones y utilidades para acceder a lo implementado en C++ desde JavaScript |
+
+> [!TIP]
+> Aunque todos son importantes, el componente fundamental para la programación asíncrona en Node.js es una dependencia externa llamada **libuv**.
 
 ### Libuv
 
-Dentro del entorno de ejecución de Node.js, su función es proporcionar soporte para gestionar operaciones asíncronas.
+Dentro del entorno de ejecución de Node.js, su función es **proporcionar soporte para gestionar operaciones asíncronas**.
 
-[Asyncronous Code Execution in Node.js](https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fd5131502a8e84dfcab11f1c3820101b7%2Fcompressed?apiKey=YJIGb4i01jvw0SRdL5Bt&token=d5131502a8e84dfcab11f1c3820101b7&alt=media&optimized=true)
+🎬 Recurso visual: [Asynchronous Code Execution in Node.js](https://cdn.builder.io/o/assets%2FYJIGb4i01jvw0SRdL5Bt%2Fd5131502a8e84dfcab11f1c3820101b7%2Fcompressed?apiKey=YJIGb4i01jvw0SRdL5Bt&token=d5131502a8e84dfcab11f1c3820101b7&alt=media&optimized=true)
 
-Creamos otro archivo app.js y copiamos el siguiente código:
+Crea otro archivo `app.js` y copia el siguiente código:
 
 ```javascript
 console.log("Inicio de programa");
@@ -214,90 +275,126 @@ console.log("Fin de programa");
 
 - ¿Qué pasa si dos Timeouts terminan al mismo tiempo?
 - ¿Qué pasa si una promesa termina al mismo tiempo que otro callback?
-- ¿En qué orden se ejecutan
+- ¿En qué orden se ejecutan?
 
-El event Loop es quien decide.
+> [!NOTE]
+> El **Event Loop** es quien decide.
 
-**¿Qué es el Event Loop?**
+### ¿Qué es el Event Loop?
 
-Técnicamente, el Event Loop es un programa escrito en lenguaje C. Sin embargo, podés entenderlo como un patrón de diseño que orquesta o coordina la ejecución de código síncrono y asíncrono en Node.js.
+Técnicamente, el Event Loop es un programa escrito en lenguaje C. Sin embargo, puedes entenderlo como un **patrón de diseño que orquesta o coordina la ejecución de código síncrono y asíncrono** en Node.js.
+
 El Event Loop se ejecuta continuamente mientras tu aplicación Node.js esté en funcionamiento, gestionando múltiples operaciones que se ejecutan de manera concurrente.
 
-En cada iteración del ciclo, existen seis colas diferentes, cada una de las cuales contiene una o más funciones callback que eventualmente deberán ejecutarse en la pila de llamadas (Call Stack).
+### Las seis colas
+
+En cada iteración del ciclo existen seis colas diferentes. Cada una contiene una o más funciones callback que eventualmente deberán ejecutarse en la pila de llamadas (_Call Stack_).
 
 <p align="center">
-  <a href="https://nodejs.org/en" target="blank"><img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6b288555862049b4b5cd7f19e2ae909f?format=webp&width=2000" width="2000" alt="NodeJS Logo" /></a>
+  <img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6b288555862049b4b5cd7f19e2ae909f?format=webp&width=2000" width="1000" alt="Las colas del Event Loop" />
 </p>
 
-- Primero, está la cola de temporizadores (Timer Queue): técnicamente implementada como un min-heap (montículo mínimo), que contiene los callbacks asociados con setTimeout y setInterval.
-- Segundo, está la cola de entrada/salida (I/O Queue): contiene los callbacks asociados con operaciones asíncronas, como las proporcionadas por los módulos fs (sistema de archivos) y http.
-- Tercero, está la cola de verificación (Check Queue): almacena los callbacks asociados con la función setImmediate, que es específica de Node.js.
-- Cuarto, está la cola de cierre (Close Queue): contiene los callbacks asociados con los eventos de cierre de una operación asíncrona.
-  Finalmente, tenemos la cola de microtareas (Microtask Queue), que se divide en dos colas independientes:
-- Cola nextTick (nextTick Queue): almacena los callbacks asociados con la función process.nextTick.
-- Cola de Promesas (Promise Queue): contiene los callbacks asociados con las promesas nativas (Promise) de JavaScript.
+| # | Cola | Contiene callbacks de |
+| --- | --- | --- |
+| 1 | ⏱️ **Timer Queue** | `setTimeout` y `setInterval` (implementada como un _min-heap_) |
+| 2 | 📂 **I/O Queue** | Operaciones asíncronas de módulos como `fs` y `http` |
+| 3 | ✅ **Check Queue** | `setImmediate` (específica de Node.js) |
+| 4 | 🚪 **Close Queue** | Eventos de cierre de una operación asíncrona |
+| 5 | 🔁 **nextTick Queue** | `process.nextTick` _(microtarea)_ |
+| 6 | 🤝 **Promise Queue** | Promesas nativas de JavaScript _(microtarea)_ |
 
-**¿Cómo funciona el Event Loop?**
+> [!NOTE]
+> Las colas 5 y 6 forman la **Microtask Queue**.
 
-<p> Las flechas del diagrama ya nos dan una pista, pero es fácil confundirse, ya que el Event Loop ejecuta los callbacks siguiendo un orden específico.</p>
+### ¿Cómo funciona el Event Loop?
 
-**Voy a explicar el orden de prioridad de las colas.**
+> [!IMPORTANT]
+> Todo el código JavaScript **síncrono** tiene prioridad sobre el asíncrono. El Event Loop solo empieza a ejecutar callbacks cuando la **Call Stack está vacía**.
 
-<p>En primer lugar, es importante comprender que todo el código JavaScript síncrono escrito por el desarrollador tiene prioridad sobre el código asíncrono que el entorno de ejecución necesita procesar.</p>
+```mermaid
+flowchart LR
+    S([Call Stack vacía]) --> M0((Micro))
+    M0 --> T[Timers]
+    T --> M1((Micro))
+    M1 --> IO[I/O]
+    IO --> M2((Micro))
+    M2 --> C[Check]
+    C --> M3((Micro))
+    M3 --> CL[Close]
+    CL --> M4((Micro))
+    M4 -->|¿quedan callbacks?| T
 
-Esto significa que el Event Loop solo puede comenzar a ejecutar callbacks cuando la pila de llamadas (Call Stack) está vacía.
+    classDef phase fill:#5FA04E,stroke:#3E7A33,color:#ffffff
+    classDef micro fill:#F2A541,stroke:#C07A1E,color:#1a1a1a
+    classDef start fill:#2B3A4A,stroke:#1B2530,color:#ffffff
+    class T,IO,C,CL phase
+    class M0,M1,M2,M3,M4 micro
+    class S start
+```
 
-Dentro del Event Loop, cada fase ejecuta los callbacks programados en su cola correspondiente. Sin embargo, existen varias reglas que debemos comprender, así que vamos a analizarlas una por una:
+🟩 Fases del Event Loop · 🟧 Microtareas (primero `nextTick`, después Promesas)
 
-1. Se ejecutan los callbacks de las colas de microtareas (Microtask Queues). Primero se procesan las tareas de la cola nextTick y después las de la cola de promesas (Promise Queue).
+Orden de prioridad paso a paso:
 
-2. Se ejecutan los callbacks de la cola de temporizadores (Timer Queue). Esta etapa se denomina Timers Phase y procesa los callbacks de temporizadores cuyo tiempo de espera ya ha finalizado.
+1. 🟧 **Microtareas:** primero la cola `nextTick` y después la de Promesas.
+2. 🟩 **Timers Phase:** callbacks de temporizadores cuyo tiempo de espera ya finalizó.
+3. 🟧 **Microtareas** después de cada callback de la cola de temporizadores.
+4. 🟩 **I/O Phase:** callbacks de entrada/salida.
+5. 🟧 **Microtareas** pendientes.
+6. 🟩 **Check Phase:** callbacks de `setImmediate`.
+7. 🟧 **Microtareas** después de cada callback de la cola de verificación.
+8. 🟩 **Close Callbacks Phase:** callbacks de la cola de cierre.
+9. 🟧 **Microtareas** por última vez dentro de la misma iteración.
 
-3. Se ejecutan las microtareas pendientes después de cada callback de la cola de temporizadores. Primero las tareas de nextTick y luego las de la cola de promesas.
+> [!TIP]
+> - Si todavía quedan callbacks por procesar, el Event Loop sigue activo en una **nueva iteración** y repite los mismos pasos.
+> - Si no queda código ni ninguna operación activa que mantenga el proceso en funcionamiento, el **Event Loop finaliza**.
 
-4. Se ejecutan los callbacks de la cola de entrada/salida (I/O Queue). Esta etapa corresponde al procesamiento de operaciones de entrada y salida (I/O Phase).
+### Preguntas frecuentes
 
-5. Se ejecutan las microtareas pendientes, comenzando por nextTick Queue y continuando con Promise Queue.
+Algunas preguntas que se pueden responder después de entender cómo funciona el Event Loop:
 
-6. Se ejecutan los callbacks de la cola de verificación (Check Queue). Esta etapa se denomina Check Phase.
+<details>
+<summary><b>¿Cuando una tarea asíncrona finaliza en libuv, en qué momento Node.js decide ejecutar su callback en la Call Stack?</b></summary>
 
-7. Se ejecutan las microtareas pendientes después de cada callback de la cola de verificación. Primero se procesan las tareas de nextTick y después las de la cola de promesas.
+> Las funciones callback se ejecutan **únicamente cuando la Call Stack está vacía**.
 
-8. Se ejecutan los callbacks de la cola de cierre (Close Queue). Esta etapa se denomina Close Callbacks Phase.
+</details>
 
-9. Por última vez dentro de la misma iteración del ciclo, se ejecutan las microtareas pendientes. Primero las tareas de nextTick y luego las de la cola de promesas.
+<details>
+<summary><b>¿Node.js espera a que la Call Stack esté vacía antes de ejecutar un callback o interrumpe el flujo normal de ejecución?</b></summary>
 
-   Si todavía quedan callbacks por procesar, el Event Loop permanece activo durante una nueva iteración y se repiten los mismos pasos.
-   Por el contrario, si todos los callbacks han sido ejecutados y no queda código ni ninguna operación activa que mantenga el proceso en funcionamiento, el Event Loop finaliza.
-   Este es el papel que desempeña el Event Loop de libuv en la ejecución del código asíncrono de Node.js.
+> El flujo normal de ejecución **no se interrumpe** para ejecutar una función callback.
 
-#### Algunas preguntas comunes que se puede responder tras entender como funciona el Event Loop.
+</details>
 
-**¿Cuando una tarea asíncrona finaliza en libuv, en qué momento Node.js decide ejecutar su callback en la Call Stack?**
+<details>
+<summary><b>¿Qué sucede con setTimeout y setInterval, que también retrasan la ejecución de un callback?</b></summary>
 
-- Respuesta:
-  Las funciones callback se ejecutan únicamente cuando la pila de llamadas (Call Stack) está vacía.
+> Los callbacks de `setTimeout` y `setInterval` reciben **la primera prioridad**.
 
-**¿Node.js espera a que la Call Stack esté vacía antes de ejecutar un callback o interrumpe el flujo normal de ejecución para hacerlo?**
+</details>
 
-- Respuesta:
-  El flujo normal de ejecución no se interrumpe para ejecutar una función callback.
+<details>
+<summary><b>Si setTimeout y readFile finalizan al mismo tiempo, ¿cuál se ejecuta primero en la Call Stack?</b></summary>
 
-**¿Qué sucede con otros métodos asíncronos, como setTimeout y setInterval, que también retrasan la ejecución de una función callback?**
+> Los callbacks de los temporizadores se ejecutan **antes** que los de entrada/salida (I/O), incluso si ambos están listos exactamente al mismo tiempo.
 
-- Respuesta:
-  Los callbacks de setTimeout y setInterval reciben la primera prioridad.
+</details>
 
-**Si dos tareas asíncronas, como setTimeout y readFile, finalizan al mismo tiempo, ¿cómo decide Node.js qué callback ejecutar primero en la Call Stack? ¿Tiene alguno mayor prioridad?**
+<sub>[⬆ Volver al índice](#índice)</sub>
 
-- Respuesta:
-  Los callbacks de los temporizadores se ejecutan antes que los callbacks de entrada/salida (I/O), incluso si ambos están listos exactamente al mismo tiempo.
+---
 
-Referencias
+## Referencias
 
-- https://nodejs.org/learn/asynchronous-work/event-loop-timers-and-nexttick
-- https://www.builder.io/blog/visual-guide-to-nodejs-event-loop
+- 📘 [Overview of Blocking vs Non-Blocking](https://nodejs.org/learn/asynchronous-work/overview-of-blocking-vs-non-blocking)
+- 📘 [The Node.js Event Loop, Timers and process.nextTick()](https://nodejs.org/learn/asynchronous-work/event-loop-timers-and-nexttick)
+- 📗 [A Visual Guide to the Node.js Event Loop](https://www.builder.io/blog/visual-guide-to-nodejs-event-loop)
+- 🛠️ [nvm-sh/nvm](https://github.com/nvm-sh/nvm) · [coreybutler/nvm-windows](https://github.com/coreybutler/nvm-windows)
 
 ## Autor
 
-- Ariel Duarte
+**Ariel Duarte** · Kopius · The Academy
+
+<sub>[⬆ Volver al índice](#índice)</sub>
