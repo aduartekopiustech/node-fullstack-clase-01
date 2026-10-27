@@ -17,7 +17,7 @@
 
 ---
 
-## Índice
+## CONTENIDO
 
 1. [Preguntas comunes sobre Node](#1-preguntas-comunes-sobre-node)
    - [¿Qué es Node?](#qué-es-node)
@@ -37,7 +37,6 @@
    - [¿Cómo funciona el Event Loop?](#cómo-funciona-el-event-loop)
    - [Preguntas frecuentes](#preguntas-frecuentes)
 6. [Referencias](#referencias)
-7. [Autor](#autor)
 
 ---
 
@@ -52,13 +51,13 @@
 
 Es de **código abierto**, está construido sobre el **motor V8 de Google Chrome** y está diseñado para realizar tareas de **entrada/salida (E/S o I/O)**, junto con el manejo de archivos en entornos cliente/servidor.
 
-| Característica | Descripción |
-| --- | --- |
-| ⚡ **Asincronía** | Ejecuta operaciones sin bloquear el hilo principal |
-| 🧩 **Módulos** | Módulos nativos y de terceros |
-| 📦 **NPM** | Gestión de paquetes integrada |
-| 📈 **Escalabilidad** | Pensado para aplicaciones que crecen |
-| 🌎 **Multiplataforma** | Funciona en Mac, Windows y Linux |
+| Característica      | Descripción                                        |
+| ------------------- | -------------------------------------------------- |
+| **Asincronía**      | Ejecuta operaciones sin bloquear el hilo principal |
+| **Módulos**         | Módulos nativos y de terceros                      |
+| **NPM**             | Gestión de paquetes integrada                      |
+| **Escalabilidad**   | Pensado para aplicaciones que crecen               |
+| **Multiplataforma** | Funciona en Mac, Windows y Linux                   |
 
 ### ¿Qué es Non-Blocking I/O?
 
@@ -70,11 +69,11 @@ Es de **código abierto**, está construido sobre el **motor V8 de Google Chrome
 
 ### NPM vs. NPX
 
-| | NPM | NPX |
-| --- | --- | --- |
-| **Nombre** | Node Package Manager | Node Package Execute |
-| **¿Qué hace?** | Gestiona los paquetes de Node. Es el registro con mayor crecimiento en paquetes publicados | Ejecuta comandos de paquetes de npm **sin instalarlos globalmente** |
-| **Instalación** | Viene incluido con Node | Viene incluido con npm |
+|                 | NPM                                                                                        | NPX                                                                 |
+| --------------- | ------------------------------------------------------------------------------------------ | ------------------------------------------------------------------- |
+| **Nombre**      | Node Package Manager                                                                       | Node Package Execute                                                |
+| **¿Qué hace?**  | Gestiona los paquetes de Node. Es el registro con mayor crecimiento en paquetes publicados | Ejecuta comandos de paquetes de npm **sin instalarlos globalmente** |
+| **Instalación** | Viene incluido con Node                                                                    | Viene incluido con npm                                              |
 
 📚 Referencia: [Overview of Blocking vs Non-Blocking](https://nodejs.org/learn/asynchronous-work/overview-of-blocking-vs-non-blocking)
 
@@ -86,15 +85,15 @@ Es de **código abierto**, está construido sobre el **motor V8 de Google Chrome
 
 ### Instalaciones requeridas
 
-| Herramienta | Para qué la usamos |
-| --- | --- |
-| [Visual Studio Code](https://code.visualstudio.com/) | Editor de código |
-| [Postman](https://www.postman.com/downloads/) | Probar APIs |
-| [Table Plus](https://tableplus.com/) | Cliente de base de datos |
-| [Git](https://git-scm.com/) | Control de versiones |
-| [Node](https://nodejs.org/es/) | Runtime de JavaScript |
-| [Google Chrome](https://www.google.com/chrome/) | Navegador |
-| [Docker Desktop](https://www.docker.com/get-started) | Contenedores |
+| Herramienta                                          | Para qué la usamos       |
+| ---------------------------------------------------- | ------------------------ |
+| [Visual Studio Code](https://code.visualstudio.com/) | Editor de código         |
+| [Postman](https://www.postman.com/downloads/)        | Probar APIs              |
+| [Table Plus](https://tableplus.com/)                 | Cliente de base de datos |
+| [Git](https://git-scm.com/)                          | Control de versiones     |
+| [Node](https://nodejs.org/es/)                       | Runtime de JavaScript    |
+| [Google Chrome](https://www.google.com/chrome/)      | Navegador                |
+| [Docker Desktop](https://www.docker.com/get-started) | Contenedores             |
 
 **Configurar Git**
 
@@ -117,7 +116,7 @@ docker pull postgres:16.15
 **Node Version Manager** permite instalar y cambiar entre distintas versiones de Node.
 
 <details>
-<summary><b>🍎 Mac</b></summary>
+<summary><b>Mac</b></summary>
 
 ```bash
 curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
@@ -126,7 +125,7 @@ curl -o- https://raw.githubusercontent.com/nvm-sh/nvm/v0.40.8/install.sh | bash
 </details>
 
 <details>
-<summary><b>🪟 Windows</b></summary>
+<summary><b>Windows</b></summary>
 
 Descarga el instalador directamente:
 
@@ -146,14 +145,14 @@ Invoke-WebRequest `
 
 **Comandos útiles**
 
-| Comando | Para qué sirve |
-| --- | --- |
-| `nvm version` | Verificar NVM |
+| Comando           | Para qué sirve                            |
+| ----------------- | ----------------------------------------- |
+| `nvm version`     | Verificar NVM                             |
 | `nvm install lts` | Instalar la última versión LTS de Node.js |
-| `nvm list` | Ver las versiones instaladas |
-| `nvm use 24.11.1` | Activar una versión específica |
-| `node --version` | Verificar Node.js |
-| `npm --version` | Verificar npm |
+| `nvm list`        | Ver las versiones instaladas              |
+| `nvm use 24.11.1` | Activar una versión específica            |
+| `node --version`  | Verificar Node.js                         |
+| `npm --version`   | Verificar npm                             |
 
 📚 Referencias: [nvm-sh/nvm](https://github.com/nvm-sh/nvm) · [coreybutler/nvm-windows](https://github.com/coreybutler/nvm-windows)
 
@@ -196,7 +195,7 @@ const data = fs.readFileSync("README.md", "utf8");
 
 console.log(data);
 
-fs.writeFileSync("README-COPY.md", data.replace(/Node/gi, "NodeJS"));
+fs.writeFileSync("README-COPY.md", data.replace(/JavaScript/gi, "ECMAScript"));
 ```
 
 > [!IMPORTANT]
@@ -204,7 +203,7 @@ fs.writeFileSync("README-COPY.md", data.replace(/Node/gi, "NodeJS"));
 >
 > 1. Crea un programa que lea el archivo `README-COPY.md`.
 > 2. Cuenta cuántas palabras tiene el archivo.
-> 3. Cuenta las ocurrencias de la palabra `NodeJS`, distinguiendo mayúsculas y minúsculas (_case sensitive_).
+> 3. Cuenta las ocurrencias de la palabra `ECMAScript`, distinguiendo mayúsculas y minúsculas (_case sensitive_).
 
 <sub>[⬆ Volver al índice](#índice)</sub>
 
@@ -238,11 +237,11 @@ Este es el problema que Node viene a resolver.
 
 En esencia, el entorno de ejecución de Node está compuesto por tres componentes principales:
 
-| Componente | Qué aporta |
-| --- | --- |
-| 🔗 **Dependencias externas** | V8, libuv y crypto, que Node.js necesita para funcionar |
-| ⚙️ **Funcionalidades de C++** | Acceso al sistema de archivos y comunicación a través de redes |
-| 📜 **Biblioteca de JavaScript** | Funciones y utilidades para acceder a lo implementado en C++ desde JavaScript |
+| Componente                   | Qué aporta                                                                    |
+| ---------------------------- | ----------------------------------------------------------------------------- |
+| **Dependencias externas**    | V8, libuv y crypto, que Node.js necesita para funcionar                       |
+| **Funcionalidades de C++**   | Acceso al sistema de archivos y comunicación a través de redes                |
+| **Biblioteca de JavaScript** | Funciones y utilidades para acceder a lo implementado en C++ desde JavaScript |
 
 > [!TIP]
 > Aunque todos son importantes, el componente fundamental para la programación asíncrona en Node.js es una dependencia externa llamada **libuv**.
@@ -264,11 +263,11 @@ setTimeout(() => {
 
 setTimeout(() => {
   console.log("Segundo Timeout");
-}, 0);
+}, 1);
 
 setTimeout(() => {
   console.log("Tercer Timeout");
-}, 1);
+}, 0);
 
 console.log("Fin de programa");
 ```
@@ -294,14 +293,14 @@ En cada iteración del ciclo existen seis colas diferentes. Cada una contiene un
   <img src="https://cdn.builder.io/api/v1/image/assets%2FYJIGb4i01jvw0SRdL5Bt%2F6b288555862049b4b5cd7f19e2ae909f?format=webp&width=2000" width="1000" alt="Las colas del Event Loop" />
 </p>
 
-| # | Cola | Contiene callbacks de |
-| --- | --- | --- |
-| 1 | ⏱️ **Timer Queue** | `setTimeout` y `setInterval` (implementada como un _min-heap_) |
-| 2 | 📂 **I/O Queue** | Operaciones asíncronas de módulos como `fs` y `http` |
-| 3 | ✅ **Check Queue** | `setImmediate` (específica de Node.js) |
-| 4 | 🚪 **Close Queue** | Eventos de cierre de una operación asíncrona |
-| 5 | 🔁 **nextTick Queue** | `process.nextTick` _(microtarea)_ |
-| 6 | 🤝 **Promise Queue** | Promesas nativas de JavaScript _(microtarea)_ |
+| #   | Cola               | Contiene callbacks de                                          |
+| --- | ------------------ | -------------------------------------------------------------- |
+| 1   | **Timer Queue**    | `setTimeout` y `setInterval` (implementada como un _min-heap_) |
+| 2   | **I/O Queue**      | Operaciones asíncronas de módulos como `fs` y `http`           |
+| 3   | **Check Queue**    | `setImmediate` (específica de Node.js)                         |
+| 4   | **Close Queue**    | Eventos de cierre de una operación asíncrona                   |
+| 5   | **nextTick Queue** | `process.nextTick` _(microtarea)_                              |
+| 6   | **Promise Queue**  | Promesas nativas de JavaScript _(microtarea)_                  |
 
 > [!NOTE]
 > Las colas 5 y 6 forman la **Microtask Queue**.
@@ -347,6 +346,7 @@ Orden de prioridad paso a paso:
 9. 🟧 **Microtareas** por última vez dentro de la misma iteración.
 
 > [!TIP]
+>
 > - Si todavía quedan callbacks por procesar, el Event Loop sigue activo en una **nueva iteración** y repite los mismos pasos.
 > - Si no queda código ni ninguna operación activa que mantenga el proceso en funcionamiento, el **Event Loop finaliza**.
 
