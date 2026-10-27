@@ -8,11 +8,11 @@
 
 ### Preguntas comunues sobre Node
 
-1. Qué es Node?
+1. ¿Qué es Node?
 
 Node es básicamente un ambiente de ejecicuón para ejecutar JavaScript desligado del navegador web o mejor conocido como Runtime environment.
 
-2. Qué lo hace tan especial?
+2. ¿Qué lo hace tan especial?
 
 Código abierto con el motor V8 de Google Chrome y está diseñado para realizar tareas de E/S(I/O) junto con el manejo de archivo de computadora cliente/servido.
 
@@ -24,7 +24,7 @@ Código abierto con el motor V8 de Google Chrome y está diseñado para realizar
 - Escalabilidad
 - Múltiple plataforma
 
-3. Qué es No-Blocking I/O
+3. ¿Qué es No-Blocking I/O?
 
 Es una caracteristica de Node que permite ejecutar instrucciones en paralelo que no bloquean todo el hilo, donde casi el 99% de las funciones de node se ejecutar en modo no bloqueando y esto lo logra a la libreria libuv.
 
@@ -33,7 +33,10 @@ Básicamente cuando la ejecución del código debe de esperar a que se complete 
 
 4. NPM vs. NPX
 
-**NPM (Node package manager)** es el gestor de paquetes para node con mayor crecimiento en paquetes desplegados y ya viene instalado con Node
+**NPM (Node package manager)** es el gestor de paquetes para node con mayor crecimiento en paquetes desplegados y ya viene instalado con Node.
+
+<p></p>
+
 **NPX (Node package execute)** es una herramienta del ecosistema de Node.js que permite ejecutar comandos de paquetes de npm sin necesidad de instalarlos globalmente.
 
 Referencias
@@ -235,10 +238,15 @@ En cada iteración del ciclo, existen seis colas diferentes, cada una de las cua
 - Cola de Promesas (Promise Queue): contiene los callbacks asociados con las promesas nativas (Promise) de JavaScript.
 
 **¿Cómo funciona el Event Loop?**
-Las flechas del diagrama ya nos dan una pista, pero es fácil confundirse, ya que el Event Loop ejecuta los callbacks siguiendo un orden específico.
-Voy a explicar el orden de prioridad de las colas.
-En primer lugar, es importante comprender que todo el código JavaScript síncrono escrito por el desarrollador tiene prioridad sobre el código asíncrono que el entorno de ejecución necesita procesar.
+
+<p> Las flechas del diagrama ya nos dan una pista, pero es fácil confundirse, ya que el Event Loop ejecuta los callbacks siguiendo un orden específico.</p>
+
+**Voy a explicar el orden de prioridad de las colas.**
+
+<p>En primer lugar, es importante comprender que todo el código JavaScript síncrono escrito por el desarrollador tiene prioridad sobre el código asíncrono que el entorno de ejecución necesita procesar.</p>
+
 Esto significa que el Event Loop solo puede comenzar a ejecutar callbacks cuando la pila de llamadas (Call Stack) está vacía.
+
 Dentro del Event Loop, cada fase ejecuta los callbacks programados en su cola correspondiente. Sin embargo, existen varias reglas que debemos comprender, así que vamos a analizarlas una por una:
 
 1. Se ejecutan los callbacks de las colas de microtareas (Microtask Queues). Primero se procesan las tareas de la cola nextTick y después las de la cola de promesas (Promise Queue).
@@ -289,3 +297,7 @@ Referencias
 
 - https://nodejs.org/learn/asynchronous-work/event-loop-timers-and-nexttick
 - https://www.builder.io/blog/visual-guide-to-nodejs-event-loop
+
+## Autor
+
+- Ariel Duarte
