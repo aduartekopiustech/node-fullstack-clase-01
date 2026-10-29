@@ -4,7 +4,7 @@
 
 # Clase 1 de NodeJS
 
-### Kopius · The Academy · Cohort 05
+### Kopius · The Academy · Cohort 05 · M2
 
 **Fundamentos, entorno de desarrollo y el Event Loop**
 
@@ -163,9 +163,9 @@ Invoke-WebRequest `
 ## 3. Primeros pasos con Node
 
 > [!IMPORTANT]
-> **Tarea: tu primer programa**
+> **Tarea 001 - Primer programa**
 >
-> 1. En el directorio de trabajo, crea la carpeta `01-fundamentos`.
+> 1. Con la terminal de comandos en el directorio de trabajo, crea la carpeta `clase-01-fundamentos`.
 > 2. Dentro, crea tu primer archivo `app.js`.
 > 3. Usando JavaScript, crea dos variables:
 >    - `message`, inicializada con el string `'Welcome'`.
@@ -178,6 +178,9 @@ Ejecuta el programa desde la terminal:
 ```bash
 node app
 ```
+
+> [!TIP]
+> Al finalizar vamos a renombrar el archivo **app.js** como **tarea001.js**, esto no va a permitir seguir creando nuevos archivos app.js para las siguientes prácticas.
 
 <sub>[⬆ Volver al índice](#índice)</sub>
 
@@ -199,13 +202,22 @@ fs.writeFileSync("README-COPY.md", data.replace(/JavaScript/gi, "ECMAScript"));
 ```
 
 > [!IMPORTANT]
-> **Tarea: analizar README-COPY.md**
+> **Tarea 002 - Lectura y analisis de archivos**
 >
 > 1. Crea un programa que lea el archivo `README-COPY.md`.
 > 2. Cuenta cuántas palabras tiene el archivo.
 > 3. Cuenta las ocurrencias de la palabra `ECMAScript`, distinguiendo mayúsculas y minúsculas (_case sensitive_).
 
+Ejecuta el programa desde la terminal:
+
+```bash
+node app
+```
+
 <sub>[⬆ Volver al índice](#índice)</sub>
+
+> [!TIP]
+> Al finalizar vamos a renombrar el archivo **app.js** como **tarea002.js**, esto no va a permitir seguir creando nuevos archivos app.js para las siguientes prácticas.
 
 ---
 
@@ -393,7 +405,7 @@ Algunas preguntas que se pueden responder después de entender cómo funciona el
 - 📗 [A Visual Guide to the Node.js Event Loop](https://www.builder.io/blog/visual-guide-to-nodejs-event-loop)
 - 🛠️ [nvm-sh/nvm](https://github.com/nvm-sh/nvm) · [coreybutler/nvm-windows](https://github.com/coreybutler/nvm-windows)
 
-## Autor
+## Mentor
 
 **Ariel Duarte** · Kopius · The Academy
 
